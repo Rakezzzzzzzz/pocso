@@ -58,7 +58,7 @@ export default function ReportPage() {
 
     try {
       const response = await axios.post("http://localhost:8000/api/add", data);
-      if (response.data.success) {
+      if ((response.data as { success: boolean }).success) {
         alert("Report submitted successfully!");
         reset({
           name: "",
@@ -87,7 +87,7 @@ export default function ReportPage() {
       });
 
       console.log(response.data);
-      if (response.data.success) {
+      if ((response.data as { success: boolean }).success) {
         setIsOtpSent(true);
         alert("OTP sent successfully!");
       } else {
@@ -110,7 +110,7 @@ export default function ReportPage() {
         otp: otp,
       });
   
-      if (response.data.success) {
+      if ((response.data as { success: boolean }).success) {
         setIsEmailVerified(true);
         setIsOtpSent(false);
         alert("Email verified successfully!");
